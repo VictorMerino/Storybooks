@@ -17,6 +17,7 @@ if (process.env.NODE_ENV === 'development') {
 // Handlebars
 app.engine('handlebars', engine())
 app.set('view engine', 'handlebars')
+app.set('views', './views')
 
 const PORT = process.env.PORT || 3000
 
