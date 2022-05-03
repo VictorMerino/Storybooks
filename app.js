@@ -3,6 +3,7 @@ import { engine } from 'express-handlebars'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
 import { connectDB } from './config/db.js'
+import routes from './routes/index.js'
 
 dotenv.config({ path: 'config/config.env' })
 
@@ -18,6 +19,9 @@ if (process.env.NODE_ENV === 'development') {
 app.engine('handlebars', engine())
 app.set('view engine', 'handlebars')
 app.set('views', './views')
+
+// Routes
+app.use('/', routes)
 
 const PORT = process.env.PORT || 3000
 
