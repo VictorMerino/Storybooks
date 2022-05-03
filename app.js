@@ -21,6 +21,9 @@ app.engine('.hbs', engine({ extname: '.hbs' }))
 app.set('view engine', '.hbs')
 app.set('views', './views')
 
+const { pathname } = new URL('public', import.meta.url)
+
+app.use(express.static(pathname))
 // Routes
 app.use('/', routes)
 
