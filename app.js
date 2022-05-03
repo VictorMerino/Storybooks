@@ -2,6 +2,8 @@ import express from 'express'
 import { engine } from 'express-handlebars'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
+import passport from 'passport'
+import session from 'express-session'
 
 import { connectDB } from './config/db.js'
 import routes from './routes/index.js'
@@ -21,6 +23,16 @@ app.engine('.hbs', engine({ extname: '.hbs' }))
 app.set('view engine', '.hbs')
 app.set('views', './views')
 
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+  })
+)
+// Passport
+app.use(passport.initialize())
+app.use(passport.session())
 const { pathname } = new URL('public', import.meta.url)
 
 app.use(express.static(pathname))
