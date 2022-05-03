@@ -2,6 +2,7 @@ import express from 'express'
 import { engine } from 'express-handlebars'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
+
 import { connectDB } from './config/db.js'
 import routes from './routes/index.js'
 
@@ -16,8 +17,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Handlebars
-app.engine('handlebars', engine())
-app.set('view engine', 'handlebars')
+app.engine('.hbs', engine({ extname: '.hbs' }))
+app.set('view engine', '.hbs')
 app.set('views', './views')
 
 // Routes
