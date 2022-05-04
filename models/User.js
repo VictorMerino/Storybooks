@@ -29,14 +29,6 @@ const UserSchema = new mongoose.Schema({
 }) */
 
 const UserSchema = new mongoose.Schema({
-  googleId: {
-    type: String,
-    required: true,
-  },
-  displayName: {
-    type: String,
-    required: true,
-  },
   firstName: {
     type: String,
     required: true,
@@ -45,8 +37,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  image: {
+  email: {
     type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
   },
   createdAt: {
     type: Date,
