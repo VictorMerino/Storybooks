@@ -15,11 +15,25 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: '/auth/google/callback',
     },
-    async (accessToken, refreshToken, profile) => {
+    async (accessToken, refreshToken, profile, cb) => {
       /* User.findOrCreate({ googleId: profile.id }, function (err, user) {
         return cb(err, user)
       }) */
-      console.log(profile)
+      console.log('Google ID ', profile.id)
+      const newUser = {
+        googleId: profile.id,
+        displayName: profile.displayName,
+        firstName: profile.name.givenName,
+        lastName: profile.name.familyName,
+        image: profile.photos[0].value,
+      }
+      try {
+        let user = await User.findOne({ googleId: profile.id }).exec()
+        if (!user) user = await User.create(newUser)
+        cb(null, user)
+      } catch (error) {
+        console.log('Catch: ', error)
+      }
       // Here more functions?
     }
   )
