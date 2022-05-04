@@ -16,9 +16,10 @@ passport.use(
       callbackURL: '/auth/google/callback',
     },
     async (accessToken, refreshToken, profile) => {
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
+      /* User.findOrCreate({ googleId: profile.id }, function (err, user) {
         return cb(err, user)
-      })
+      }) */
+      console.log(profile)
       // Here more functions?
     }
   )
