@@ -5,7 +5,7 @@ const { Strategy: GoogleStrategy } = passport */
 import dotenv from 'dotenv'
 dotenv.config()
 
-import mongoose from 'mongoose'
+// import mongoose from 'mongoose'
 import User from '../models/User.js'
 
 passport.use(
@@ -24,5 +24,18 @@ passport.use(
     }
   )
 )
+
+passport.serializeUser((user, cb) => {
+  // process.nextTick(function () {
+  cb(null, { id: user.id })
+  // })
+})
+
+passport.deserializeUser((id, cb) => {
+  /* process.nextTick(function () {
+    return cb(null, user)
+  }) */
+  User.findById((id, (err, user) => cb(err, user)))
+})
 
 export default passport
