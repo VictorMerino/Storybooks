@@ -34,7 +34,7 @@ passport.use(
         console.log(user)
         console.log('........')
         if (!user) user = await User.create(newUser)
-        cb(null, user)
+        return cb(null, user)
       } catch (error) {
         console.log('Catch: ', error)
       }
@@ -44,9 +44,9 @@ passport.use(
 )
 
 passport.serializeUser((user, cb) => {
-  // process.nextTick(function () {
-  cb(null, { id: user.id })
-  // })
+  process.nextTick(function () {
+    cb(null, { id: user.id })
+  })
 })
 
 passport.deserializeUser((id, cb) => {
