@@ -23,12 +23,12 @@ router.get('/logout', (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-  console.log(res)
+  console.log(req.body)
   res.send('hello register')
 })
 
 router.post('/login', (req, res) => {
-  console.log(res)
+  console.log(req.body)
   res.send('hello login')
 })
 
