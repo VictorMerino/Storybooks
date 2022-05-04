@@ -7,7 +7,8 @@ import session from 'express-session'
 
 import { connectDB } from './config/db.js'
 import routes from './routes/index.js'
-import authRoutes from './routes/auth.js'
+// import authGoogleRoutes from './routes/auth-google.js'
+import authLocalRoutes from './routes/auth-local.js'
 
 dotenv.config()
 
@@ -41,7 +42,8 @@ const { pathname } = new URL('public', import.meta.url)
 app.use(express.static(pathname))
 // Routes
 app.use('/', routes)
-app.use('/auth', authRoutes)
+// app.use('/auth', authGoogleRoutes)
+app.use('/', authLocalRoutes)
 
 const PORT = process.env.PORT || 3000
 
