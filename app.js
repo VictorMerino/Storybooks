@@ -9,7 +9,11 @@ import { connectDB } from './config/db.js'
 import routes from './routes/index.js'
 import authRoutes from './routes/auth.js'
 
-dotenv.config({ path: 'config/config.env' })
+dotenv.config()
+
+console.log(process.env)
+
+import './config/passport.js'
 
 connectDB()
 
