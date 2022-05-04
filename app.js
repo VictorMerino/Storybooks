@@ -11,7 +11,7 @@ import authRoutes from './routes/auth.js'
 
 dotenv.config()
 
-import './config/passport.js'
+import './config/passport-google-oauth.js'
 
 connectDB()
 
