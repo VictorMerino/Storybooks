@@ -24,7 +24,12 @@ router.get('/logout', (req, res) => {
 
 router.post('/register', (req, res) => {
   console.log(res)
-  res.send('hello')
+  res.send('hello register')
+})
+
+router.post('/login', (req, res) => {
+  console.log(res)
+  res.send('hello login')
 })
 
 export default router
