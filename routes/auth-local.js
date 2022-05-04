@@ -24,7 +24,27 @@ router.get('/logout', (req, res) => {
 
 router.post('/register', (req, res) => {
   console.log(req.body)
-  res.send('hello register')
+  const { first_name, last_name, password, password2, email } = req.body
+
+  let errors = []
+
+  if (!first_name || !last_name || !password || !password2 || !email) {
+    errors.push({ msg: 'All fields are required' })
+  }
+
+  if (password !== password2) {
+    errors.push({ msg: 'Passwords do not match' })
+  }
+
+  const passwordLength = 6
+  if (password.length < passwordLength) {
+    errors.push({ msg: `Passwords minimum length is ${passwordLength}` })
+  }
+  if (errors.length) {
+    console.log('Check for errors')
+  } else {
+    res.send(req.body)
+  }
 })
 
 router.post('/login', (req, res) => {
