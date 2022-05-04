@@ -52,7 +52,7 @@ router.post('/register', (req, res) => {
       layout: 'login',
     })
   } else {
-    res.send(req.body)
+    res.redirect('/dashboard')
   }
 })
 
