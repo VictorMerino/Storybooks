@@ -11,8 +11,6 @@ import authRoutes from './routes/auth.js'
 
 dotenv.config()
 
-console.log(process.env)
-
 import './config/passport.js'
 
 connectDB()

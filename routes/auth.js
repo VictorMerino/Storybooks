@@ -5,13 +5,13 @@ const router = express.Router()
 
 router.get('/google', passport.authenticate('google', { scope: ['profile'] }))
 
-router.get(
-  '/google/callback',
-  passport.authenticate('google', { failureRedirect: '/' }),
-  (req, res) => {
-    // Successful authentication, redirect home.
-    res.redirect('/dashboard')
-  }
-)
+router.get('/google/callback', (req, res) => {
+  passport.authenticate('google', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/',
+  })
+  // Successful authentication, redirect to dashboard.
+  res.redirect('/dashboard')
+})
 
 export default router
