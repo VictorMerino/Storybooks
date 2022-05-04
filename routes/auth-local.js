@@ -22,4 +22,9 @@ router.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
+router.post('/register', (req, res) => {
+  console.log(res)
+  res.send('hello')
+})
+
 export default router

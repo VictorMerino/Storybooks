@@ -27,6 +27,9 @@ app.engine('.hbs', engine({ extname: '.hbs' }))
 app.set('view engine', '.hbs')
 app.set('views', './views')
 
+// Bodyparser
+app.use(express.urlencoded({ extended: false }))
+
 app.use(
   session({
     secret: 'keyboard cat',
