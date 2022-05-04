@@ -42,6 +42,15 @@ router.post('/register', (req, res) => {
   }
   if (errors.length) {
     console.log('Check for errors')
+    res.render('register', {
+      errors,
+      first_name,
+      last_name,
+      password,
+      password2,
+      email,
+      layout: 'login',
+    })
   } else {
     res.send(req.body)
   }
