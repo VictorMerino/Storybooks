@@ -13,9 +13,21 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: '/auth/google/callback',
+      callbackURL: 'http://localhost:3000/auth/google/callback',
+      passReqToCallback: true,
     },
-    async (accessToken, refreshToken, profile, cb) => {
+    async (req, accessToken, refreshToken, profile, cb) => {
+      /* console.log('req')
+      console.log(req)
+      console.log('accessToken')
+      console.log(accessToken)
+      console.log('refreshToken')
+      console.log(refreshToken)
+      console.log('cb')
+      console.log(cb)
+      console.log('profile')
+      console.log(profile)
+      console.log('---------') */
       /* User.findOrCreate({ googleId: profile.id }, function (err, user) {
         return cb(err, user)
       }) */
@@ -28,7 +40,10 @@ passport.use(
         image: profile.photos[0].value,
       }
       try {
-        let user = await User.findOne({ googleId: profile.id }).exec()
+        let user = await User.findOne({ googleId: profile.id })
+        console.log('user')
+        console.log(user)
+        console.log('........')
         if (!user) user = await User.create(newUser)
         cb(null, user)
       } catch (error) {
