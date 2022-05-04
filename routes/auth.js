@@ -3,7 +3,10 @@ import passport from 'passport'
 
 const router = express.Router()
 
-router.get('/google', passport.authenticate('google', { scope: ['profile'] }))
+router.get(
+  '/google',
+  passport.authenticate('google', { scope: ['email', 'profile'] })
+)
 
 router.get('/google/callback', (req, res) => {
   passport.authenticate('google', {
