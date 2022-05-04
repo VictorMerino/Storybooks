@@ -17,17 +17,6 @@ passport.use(
       passReqToCallback: true,
     },
     async (req, accessToken, refreshToken, profile, cb) => {
-      /* console.log('req')
-      console.log(req)
-      console.log('accessToken')
-      console.log(accessToken)
-      console.log('refreshToken')
-      console.log(refreshToken)
-      console.log('cb')
-      console.log(cb)
-      console.log('profile')
-      console.log(profile)
-      console.log('---------') */
       /* User.findOrCreate({ googleId: profile.id }, function (err, user) {
         return cb(err, user)
       }) */

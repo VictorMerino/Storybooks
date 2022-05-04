@@ -1,5 +1,6 @@
 export const ensureAuth = (req, res, next) => {
-  console.log('req.isAuthenticated', req.isAuthenticated())
+  // console.log('req.isAuthenticated', req.isAuthenticated())
+  // console.log(req.user)
   // if (req.isAuthenticated()) {
   return next()
   /*   } else {
