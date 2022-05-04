@@ -14,4 +14,10 @@ router.get('/google/callback', (req, res) => {
   res.redirect('/dashboard')
 })
 
+router.get('/logout', (req, res) => {
+  req.logout()
+  // Successful logout, redirect to homepage.
+  res.redirect('/')
+})
+
 export default router
