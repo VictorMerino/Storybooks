@@ -82,6 +82,7 @@ router.post('/register', async (req, res) => {
           // Set password hashed
           newUser.password = hash
           await newUser.save()
+          req.flash('successMsg', 'You are now registered, now you can log-in')
           res.redirect('/')
         })
       )

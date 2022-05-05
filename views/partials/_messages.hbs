@@ -10,4 +10,10 @@
   <h6 class="green-text">No errors</h6>
 {{/if}}
 
+{{#if successMsg}}
+  <div class="green-text">{{successMsg}}</div>
+{{/if}}
 
+{{#if errorMsg}}
+  <div class="red-text">{{errorMsg}}</div>
+{{/if}}
