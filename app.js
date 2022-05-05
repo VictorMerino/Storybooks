@@ -42,6 +42,14 @@ app.use(
 
 // Connect flash
 app.use(flash())
+
+// Global vars
+app.use((req, res, next) => {
+  res.locals.successMsg = req.flash('successMsg')
+  res.locals.errorMsg = req.flash('errorMsg')
+  next()
+})
+
 // Passport
 app.use(passport.initialize())
 app.use(passport.session())
