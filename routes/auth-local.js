@@ -26,11 +26,11 @@ router.get('/logout', (req, res) => {
 
 router.post('/register', async (req, res) => {
   console.log(req.body)
-  const { first_name, last_name, password, password2, email } = req.body
+  const { firstName, last_name, password, password2, email } = req.body
 
   let errors = []
 
-  if (!first_name || !last_name || !password || !password2 || !email) {
+  if (!firstName || !last_name || !password || !password2 || !email) {
     errors.push({ msg: 'All fields are required' })
   }
 
@@ -46,7 +46,7 @@ router.post('/register', async (req, res) => {
     console.log('Check for errors')
     res.render('register', {
       errors,
-      first_name,
+      firstName,
       last_name,
       password,
       password2,
@@ -59,7 +59,7 @@ router.post('/register', async (req, res) => {
       errors.push({ msg: 'Email is already registered' })
       res.render('register', {
         errors,
-        first_name,
+        firstName,
         last_name,
         password,
         password2,
@@ -69,7 +69,7 @@ router.post('/register', async (req, res) => {
     } else {
       const newUser = new User({
         email,
-        first_name,
+        firstName,
         last_name,
         password,
       })
