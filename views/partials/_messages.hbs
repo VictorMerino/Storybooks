@@ -6,24 +6,22 @@
       {{/each}}
     </ul>
   </div>
-{{else}}
-  <h6 class="green-text">No errors</h6>
 {{/if}}
 
 {{#if successMsg}}
-<div class="collection">
-  <div class="collection-item green-text">{{successMsg}}</div>
-</div>
+  <div class="collection">
+    <div class="collection-item green-text">{{successMsg}}</div>
+  </div>
 {{/if}}
 
 {{#if errorMsg}}
-<div class="collection">
-  <div class="collection-item red-text">{{errorMsg}}</div>
-</div>
+  <div class="collection">
+    <div class="collection-item red-text">{{errorMsg}}</div>
+  </div>
 {{/if}}
 
 {{#if error}}
-<div class="collection">
-  <div class="collection-item red-text">{{error}}</div>
-</div>
+  <div class="collection">
+    <div class="collection-item red-text">{{error}}</div>
+  </div>
 {{/if}}
