@@ -1,8 +1,10 @@
 import express from 'express'
 import passport from 'passport'
+import bcrypt from 'bcryptjs'
 
 const router = express.Router()
 
+import User from '../models/User.js'
 /* router.get(
   '/login',
   res.render('login', {
@@ -22,7 +24,7 @@ router.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
   console.log(req.body)
   const { first_name, last_name, password, password2, email } = req.body
 
@@ -52,7 +54,40 @@ router.post('/register', (req, res) => {
       layout: 'login',
     })
   } else {
-    res.redirect('/dashboard')
+    const user = await User.findOne({ email })
+    if (user) {
+      errors.push({ msg: 'Email is already registered' })
+      res.render('register', {
+        errors,
+        first_name,
+        last_name,
+        password,
+        password2,
+        email,
+        layout: 'login',
+      })
+    } else {
+      const newUser = new User({
+        email,
+        first_name,
+        last_name,
+        password,
+      })
+
+      // Hash password
+      bcrypt.genSalt(10, (err, salt) =>
+        bcrypt.hash(newUser.password, salt, async (error, hash) => {
+          if (error) throw new Error(err)
+
+          // Set password hashed
+          newUser.password = hash
+          await newUser.save()
+          res.redirect('/login')
+        })
+      )
+      console.log(newUser)
+      // Not yet, we need to actually save the user before: res.redirect('/dashboard')
+    }
   }
 })
 
