@@ -58,7 +58,26 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
   console.log(req.body)
-  res.send('hello login')
+  const { email, password } = req.body
+
+  let errors = []
+
+  if (!email || !password) {
+    errors.push({ msg: 'All fields are required' })
+  }
+
+  if (errors.length) {
+    console.log('Check for errors')
+    res.render('login', {
+      errors,
+      email,
+      password,
+      layout: 'login',
+    })
+  } else {
+    // TO-DO: check for the actual user in mongo DB
+    res.redirect('/dashboard')
+  }
 })
 
 export default router
