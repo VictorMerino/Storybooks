@@ -92,7 +92,7 @@ router.post('/register', async (req, res) => {
   }
 })
 
-router.post('/login', (req, res) => {
+router.post('/login', (req, res, next) => {
   console.log(req.body)
   const { email, password } = req.body
 
@@ -111,8 +111,11 @@ router.post('/login', (req, res) => {
       layout: 'login',
     })
   } else {
-    // TO-DO: check for the actual user in mongo DB
-    res.redirect('/dashboard')
+    passport.authenticate('local', {
+      successRedirect: '/dashboard',
+      failureRedirect: '/',
+      failureFlash: true,
+    })(req, res, next)
   }
 })
 
