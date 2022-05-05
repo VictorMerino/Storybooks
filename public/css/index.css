@@ -4,3 +4,12 @@ body {
 .login-wrapper {
   margin-inline: auto;
 }
+
+.input-field {
+  border: 1px solid #ececec;
+  text-align: left;
+}
+
+.input-field label {
+  position: static;
+}
