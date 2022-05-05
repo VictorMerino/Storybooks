@@ -12,7 +12,7 @@ passport.use(
     },
     async (email, password, done) => {
       try {
-        const user = User.findOne({ email })
+        const user = await User.findOne({ email: email }).exec()
         if (!user) {
           return done(null, false, { message: 'That email is not registered' })
         }
