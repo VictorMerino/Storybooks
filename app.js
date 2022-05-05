@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import morgan from 'morgan'
 import passport from 'passport'
 import session from 'express-session'
+import flash from 'connect-flash'
 
 import { connectDB } from './config/db.js'
 import routes from './routes/index.js'
@@ -30,13 +31,17 @@ app.set('views', './views')
 // Bodyparser
 app.use(express.urlencoded({ extended: false }))
 
+// Express session
 app.use(
   session({
     secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false,
+    resave: true,
+    saveUninitialized: true,
   })
 )
+
+// Connect flash
+app.use(flash())
 // Passport
 app.use(passport.initialize())
 app.use(passport.session())
