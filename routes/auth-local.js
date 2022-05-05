@@ -82,7 +82,7 @@ router.post('/register', async (req, res) => {
           // Set password hashed
           newUser.password = hash
           await newUser.save()
-          res.redirect('/login')
+          res.redirect('/')
         })
       )
       console.log(newUser)
