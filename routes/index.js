@@ -12,7 +12,10 @@ router.get('/', ensureGuest, (req, res) => {
 
 router.get('/dashboard', ensureAuth, (req, res) => {
   console.log(req.user)
-  res.render('dashboard')
+  res.render('dashboard', {
+    userEmail: req.user.email,
+    randomVariable: 'rrrr',
+  })
 })
 
 export default router
