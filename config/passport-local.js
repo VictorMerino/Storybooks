@@ -31,3 +31,17 @@ passport.use(
     }
   )
 )
+
+passport.serializeUser((user, cb) => {
+  process.nextTick(function () {
+    cb(null, { id: user.id, username: user.username })
+  })
+})
+
+passport.deserializeUser((user, cb) => {
+  process.nextTick(function () {
+    return cb(null, user)
+  })
+})
+
+export default passport

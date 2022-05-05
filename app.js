@@ -13,7 +13,8 @@ import authLocalRoutes from './routes/auth-local.js'
 
 dotenv.config()
 
-import './config/passport-google-oauth.js'
+// import './config/passport-google-oauth.js'
+import './config/passport-local.js'
 
 connectDB()
 
