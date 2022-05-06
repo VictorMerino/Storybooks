@@ -4,6 +4,9 @@ import dotenv from 'dotenv'
 import morgan from 'morgan'
 import passport from 'passport'
 import session from 'express-session'
+import mongoose from 'mongoose'
+import MongoStore from 'connect-mongo'
+
 import flash from 'connect-flash'
 
 import { connectDB } from './config/db.js'
@@ -38,6 +41,7 @@ app.use(
     secret: 'keyboard cat',
     resave: true,
     saveUninitialized: true,
+    store: MongoStore.create({ mongoose, mongoUrl: process.env.MONGO_URI }),
   })
 )
 
