@@ -28,8 +28,10 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
 
+// Handlebars helpers
+import { formatDate } from './helpers/hbs.js'
 // Handlebars
-app.engine('.hbs', engine({ extname: '.hbs' }))
+app.engine('.hbs', engine({ extname: '.hbs', helpers: { formatDate } }))
 app.set('view engine', '.hbs')
 app.set('views', './views')
 
