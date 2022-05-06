@@ -3,7 +3,12 @@
   "tabWidth": 2,
   "semi": false,
   "singleQuote": true,
-  "[hbs]": {
-    "editor.formatOnSave": true,
-}
+  "overrides": [
+    {
+      "files": "*.hbs",
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
 }
