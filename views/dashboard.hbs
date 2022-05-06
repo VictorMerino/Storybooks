@@ -1,3 +1,28 @@
 <h5>Welcome to your dashboard, {{ userName }}</h5>
 
-User stories: {{stories}}
+<legend><strong>User stories:</strong></legend>
+{{#if stories}}
+  <table class="stripped">
+    <thead>
+      <td>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th></th>
+      </td>
+    </thead>
+    <tbody>
+      {{#each stories}}
+        <tr>
+          <td><a href="/stories/{{_id}}" class="link">{{title}}</a></td>
+          <td>{{createdAt}}</td>
+          <td><span class="dash-status">{{status}}</span></td>
+          <td></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{stories}}
+{{else}}
+  No stories
+{{/if}}
