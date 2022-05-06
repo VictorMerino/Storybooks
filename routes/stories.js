@@ -12,14 +12,36 @@ router.get('/add', ensureAuth, (req, res) => {
 
 router.post('/', ensureAuth, async (req, res) => {
   try {
-    // req.body.user = req.user.id
-    await Story.create(req.body)
-    res.redirect('/dashboard')
+    console.log(req.body)
+    const { title, status, body } = req.body
+
+    let errors = []
+    if (!title || !status || !body) {
+      errors.push({ msg: 'All fields are required' })
+    }
+
+    if (errors.length) {
+      console.log('Check for errors', errors)
+      res.render('stories/add', {
+        title,
+        status,
+        body,
+        errors,
+      })
+    } else {
+      const newStory = {
+        user: req.user.id,
+        title,
+        status,
+        body,
+      }
+      await Story.create(newStory)
+      res.redirect('/dashboard')
+    }
   } catch (err) {
     res.render('error/500')
     throw new Error(err)
   }
-  res.render('stories/add')
 })
 
 export default router
