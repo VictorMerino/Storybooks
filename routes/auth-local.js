@@ -19,7 +19,7 @@ router.get('/register', ensureGuest, (req, res) => {
   })
 })
 
-router.get('/logout', ensureGuest, (req, res) => {
+router.get('/logout', (req, res) => {
   req.logout()
   req.flash('successMsg', 'You are now logged out')
   // Successful logout, redirect to homepage.
