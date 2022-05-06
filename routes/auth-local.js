@@ -4,21 +4,22 @@ import bcrypt from 'bcryptjs'
 
 const router = express.Router()
 
+import { ensureGuest } from '../middleware/auth.js'
 import User from '../models/User.js'
-/* router.get(
-  '/login',
+
+router.get('/login', ensureGuest, (req, res) => {
   res.render('login', {
     layout: 'login',
   })
-) */
+})
 
-router.get('/register', (req, res) => {
+router.get('/register', ensureGuest, (req, res) => {
   res.render('register', {
     layout: 'login',
   })
 })
 
-router.get('/logout', (req, res) => {
+router.get('/logout', ensureGuest, (req, res) => {
   req.logout()
   req.flash('successMsg', 'You are now logged out')
   // Successful logout, redirect to homepage.
