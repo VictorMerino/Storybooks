@@ -4,25 +4,24 @@
 {{#if stories}}
   <table class="stripped">
     <thead>
-      <td>
+      <tr>
         <th>Title</th>
         <th>Date</th>
         <th>Status</th>
         <th></th>
-      </td>
+      </tr>
     </thead>
     <tbody>
       {{#each stories}}
         <tr>
-          <td><a href="/stories/{{_id}}" class="link">{{title}}</a></td>
-          <td>{{createdAt}}</td>
-          <td><span class="dash-status">{{status}}</span></td>
+          <td><a href="/stories/{{this._id}}" class="link">{{this.title}}</a></td>
+          <td>{{this.createdAt}}</td>
+          <td><span class="dash-status">{{this.status}}</span></td>
           <td></td>
         </tr>
       {{/each}}
     </tbody>
   </table>
-  {{stories}}
 {{else}}
   No stories
 {{/if}}
