@@ -14,8 +14,8 @@ router.get('/', (req, res) => {
 
 router.get('/dashboard', ensureAuth, async (req, res) => {
   try {
-    const user = await User.findOne({ id: req.user.id })
-    const stories = await Story.find({ id: user._id }).lean().exec()
+    const user = await User.findOne({ _id: req.user.id })
+    const stories = await Story.find({ user: user._id }).lean().exec()
     // TO-DO: set user in session variable, this way we will save a heavy and not actuallu needed call to db
     res.render('dashboard', {
       userName: `${user.firstName} ${user.lastName}`,
