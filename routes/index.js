@@ -5,7 +5,9 @@ import { ensureAuth } from '../middleware/auth.js'
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  res.render('home')
+  res.render('home', {
+    isAuthenticated: req.isAuthenticated(),
+  })
 })
 
 router.get('/dashboard', ensureAuth, (req, res) => {
@@ -13,6 +15,7 @@ router.get('/dashboard', ensureAuth, (req, res) => {
   res.render('dashboard', {
     userEmail: req.user.email,
     randomVariable: 'rrrr',
+    isAuthenticated: req.isAuthenticated(),
   })
 })
 
