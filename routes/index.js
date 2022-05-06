@@ -7,11 +7,15 @@ import User from '../models/User.js'
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-  const stories = await Story.find({ status: 'public' }).lean().exec()
-  res.render('home', {
-    stories,
-    isAuthenticated: req.isAuthenticated(),
-  })
+  try {
+    const stories = await Story.find({ status: 'public' }).lean().exec()
+    res.render('home', {
+      stories,
+      isAuthenticated: req.isAuthenticated(),
+    })
+  } catch {
+    res.render('error/500')
+  }
 })
 
 router.get('/dashboard', ensureAuth, async (req, res) => {
@@ -25,9 +29,7 @@ router.get('/dashboard', ensureAuth, async (req, res) => {
       isAuthenticated: req.isAuthenticated(), // This is actually redundant, but dunno how to get it better
     })
   } catch (err) {
-    console.log(err)
     res.render('error/500')
-    throw new Error(err)
   }
 })
 
