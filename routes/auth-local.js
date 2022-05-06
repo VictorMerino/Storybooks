@@ -45,7 +45,8 @@ router.post('/register', async (req, res) => {
   if (password.length < passwordLength) {
     errors.push({ msg: `Passwords minimum length is ${passwordLength}` })
   }
-  if (errors.length) {
+
+  function renderRegisterWithErrors() {
     console.log('Check for errors')
     res.render('register', {
       errors,
@@ -56,19 +57,14 @@ router.post('/register', async (req, res) => {
       email,
       layout: 'login',
     })
+  }
+  if (errors.length) {
+    renderRegisterWithErrors()
   } else {
     const user = await User.findOne({ email })
     if (user) {
       errors.push({ msg: 'Email is already registered' })
-      res.render('register', {
-        errors,
-        firstName,
-        lastName,
-        password,
-        password2,
-        email,
-        layout: 'login',
-      })
+      renderRegisterWithErrors()
     } else {
       const newUser = new User({
         email,
