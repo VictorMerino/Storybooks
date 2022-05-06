@@ -8,6 +8,7 @@ import { ensureGuest } from '../middleware/auth.js'
 import User from '../models/User.js'
 
 router.get('/login', ensureGuest, (req, res) => {
+  // TO-DO: try https://www.npmjs.com/package/named-routes
   res.render('login', {
     layout: 'login',
   })
