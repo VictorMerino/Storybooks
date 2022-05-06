@@ -35,6 +35,7 @@ app.set('views', './views')
 
 // Bodyparser
 app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
 // Express session
 app.use(
