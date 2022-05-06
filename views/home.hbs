@@ -3,6 +3,25 @@
 {{/if}}
 
 <h1>Homepage</h1>
+<div class="row">
+  {{#each stories}}
+    <div class="col s12 m4">
+      <div class="card">
+        <div class="card-image">EDIT</div>
+        <div class="card-content center-align">
+          <h5>{{title}}</h5>
+          <p>{{body}}</p>
+          <br>
+          <div class="chip">USER IMG</div>
+        </div>
+        <div class="card-action center-align">READ MORE</div>
+      </div>
+    </div>
+  {{else}}
+    No available stories
+  {{/each}}
+</div>
+
 
 {{#unless isAuthenticated}}
   <p><a href="/login">Login here</a></p>

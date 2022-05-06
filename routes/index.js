@@ -6,8 +6,10 @@ import User from '../models/User.js'
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+  const stories = await Story.find({ status: 'public' }).lean().exec()
   res.render('home', {
+    stories,
     isAuthenticated: req.isAuthenticated(),
   })
 })
