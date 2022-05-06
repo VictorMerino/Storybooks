@@ -1,6 +1,13 @@
-import mongoose from 'mongoose'
-
+// Google+ Schema
 const UserSchema = new mongoose.Schema({
+  googleId: {
+    type: String,
+    required: true,
+  },
+  displayName: {
+    type: String,
+    required: true,
+  },
   firstName: {
     type: String,
     required: true,
@@ -9,17 +16,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
+  image: {
     type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
   },
   createdAt: {
     type: Date,
     default: Date.now,
   },
 })
-export default mongoose.model('User', UserSchema)
