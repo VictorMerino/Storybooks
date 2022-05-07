@@ -1,0 +1,18 @@
+<div class="card-content center-align" style="height: 200px; overflow: hidden">
+  <h5 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+    {{story.title}}
+  </h5>
+  <p>{{renderHTML story.body}}</p>
+  <br>
+  <div class="chip">{{ getUserName story.user }}</div>
+  <div>Written in: <strong>{{formatDate story.createdAt}}</strong></div>
+  {{story.user._id}} - {{userId}}
+  {{#if (canEdit story.user._id userId)}}
+    <a
+      href="/stories/edit/{{story._id}}"
+      class="card-image btn-floating brown"
+      style="position: absolute; right: 6px; top: -12px;">
+      <i class="fas fa-edit"></i>
+    </a>
+  {{/if}}
+</div>
