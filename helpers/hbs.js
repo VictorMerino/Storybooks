@@ -21,6 +21,7 @@ export const getUserName = /* async */ (userId) => {
   /* const storyUser = await User.findOne({ _id: userId })
   const fullName = `${storyUser.firstName} ${storyUser.lastName}`
   return fullName */
+  console.log(userId)
   return `${userId.firstName} ${userId.lastName}`
 }
 

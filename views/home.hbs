@@ -19,7 +19,7 @@
           </h5>
           <p>{{renderHTML body}}</p>
           <br>
-          <div class="chip">{{ getUserName user }}</div>
+          <a href="/user/{{user}}" class="chip">{{ getUserName user }}</a>
         </div>
         <div class="card-action center-align">
           <a class="waves-effect waves-light btn modal-trigger" href="#modal-{{@index}}">READ MORE</a>
