@@ -1,6 +1,5 @@
 import express from 'express'
 import methodOverride from 'method-override'
-import { engine } from 'express-handlebars'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
 import passport from 'passport'
@@ -24,24 +23,8 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
 
-// Handlebars helpers
-import {
-  formatDate,
-  renderHTML,
-  canEdit,
-  getUserName,
-  preSelect,
-} from './helpers/hbs.js'
-// Handlebars
-app.engine(
-  '.hbs',
-  engine({
-    extname: '.hbs',
-    helpers: { formatDate, renderHTML, canEdit, getUserName, preSelect },
-  })
-)
-app.set('view engine', '.hbs')
-app.set('views', './views')
+import { setHandlebarsConfig } from './config/handlebars.js'
+setHandlebarsConfig(app)
 
 // Bodyparser
 app.use(express.urlencoded({ extended: false }))
