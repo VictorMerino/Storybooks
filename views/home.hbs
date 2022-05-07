@@ -1,12 +1,11 @@
-{{#if successMsg}}
-  <div class="green-text">{{successMsg}}</div>
-{{/if}}
+{{>_messages}}
 
 <h1>Homepage</h1>
 <div class="row">
   {{#each stories}}
     <div class="col s12 m6 l4">
       <div class="card">
+        {{_id}}
         {{#if (canEdit user ../userId)}}
           <a
             href="/stories/edit/{{_id}}"
