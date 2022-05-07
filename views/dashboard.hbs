@@ -17,7 +17,14 @@
           <td><a href="/stories/edit/{{this._id}}" class="link">{{this.title}}</a></td>
           <td>{{formatDate this.createdAt}}</td>
           <td><span class="dash-status">{{this.status}}</span></td>
-          <td></td>
+          <td>
+            <form action="/stories/{{this._id}}" method="POST" class="delete-form">
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit" class="btn btn-float red darken-2">
+                <i class="fas fa-trash"></i>
+              </button>
+            </form>
+          </td>
         </tr>
       {{/each}}
     </tbody>
