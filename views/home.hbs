@@ -19,13 +19,13 @@
           <div class="chip">USER IMG</div>
         </div>
         <div class="card-action center-align">
-          <a class="waves-effect waves-light btn modal-trigger" href="#modal1">READ MORE</a>
+          <a class="waves-effect waves-light btn modal-trigger" href="#modal-{{@index}}">READ MORE</a>
 
           <!-- Modal Structure -->
-          <div id="modal1" class="modal">
+          <div id="modal-{{@index}}" class="modal">
             <div class="modal-content">
-              <h4>Modal Header</h4>
-              <p>A bunch of text</p>
+              <h4>{{title}}</h4>
+              <p>{{renderHTML body}}</p>
             </div>
             <div class="modal-footer">
               <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
