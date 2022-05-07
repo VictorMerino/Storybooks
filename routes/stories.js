@@ -134,9 +134,15 @@ router.delete('/:id', ensureAuth, async (req, res) => {
 router.get('/user/:id', ensureAuth, async (req, res) => {
   try {
     console.log(req.params.id)
+    // TO-DO: only show public stories and/or private own ones
+    /* const stories2 = await Story.find({
+      user: req.params.id,
+      $or: [{ status: 'public' }],
+    }) */
     const stories = await Story.find({ user: req.params.id })
       .populate('user')
       .lean()
+    // User.find({$or:[{region: "NA"},{sector:"Some Sector"}]}, function(err, user)
     console.log(stories)
     res.render('stories/user', { stories })
   } catch (error) {
