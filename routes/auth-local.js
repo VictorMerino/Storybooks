@@ -28,7 +28,6 @@ router.get('/logout', (req, res) => {
 })
 
 router.post('/register', async (req, res) => {
-  console.log(req.body)
   const { firstName, lastName, password, password2, email } = req.body
 
   let errors = []
@@ -85,14 +84,11 @@ router.post('/register', async (req, res) => {
           res.redirect('/')
         })
       )
-      console.log(newUser)
-      // Not yet, we need to actually save the user before: res.redirect('/dashboard')
     }
   }
 })
 
 router.post('/login', (req, res, next) => {
-  console.log(req.body)
   const { email, password } = req.body
 
   let errors = []

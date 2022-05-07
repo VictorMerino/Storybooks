@@ -15,7 +15,6 @@ router.get('/', async (req, res) => {
       userId: req.user ? req.user.id : null,
     })
   } catch (err) {
-    console.log(err)
     res.render('error/500')
   }
 })
