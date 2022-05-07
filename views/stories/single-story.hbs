@@ -4,7 +4,7 @@
   </h5>
   <p>{{renderHTML story.body}}</p>
   <br>
-  <a href="/user/{{story.user._id}}" class="chip">{{ getUserName story.user }}</a>
+  <a href="/stories/user/{{story.user._id}}" class="chip">{{ getUserName story.user }}</a>
   <div>Written in: <strong>{{formatDate story.createdAt}}</strong></div>
   {{story.user._id}} - {{userId}}
   {{#if (canEdit story.user._id userId)}}
