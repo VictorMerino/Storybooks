@@ -17,10 +17,11 @@ export const canEdit = (storyUser, loggedUser) => {
   return storyUser.toString() === loggedUser
 }
 
-export const getUserName = async (userId) => {
-  const storyUser = await User.findOne({ _id: userId })
+export const getUserName = /* async */ (userId) => {
+  /* const storyUser = await User.findOne({ _id: userId })
   const fullName = `${storyUser.firstName} ${storyUser.lastName}`
-  return fullName
+  return fullName */
+  return `${userId.firstName} ${userId.lastName}`
 }
 
 export const preSelect = (selected, options) => {
