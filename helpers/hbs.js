@@ -22,3 +22,10 @@ export const getUserName = async (userId) => {
   const fullName = `${storyUser.firstName} ${storyUser.lastName}`
   return fullName
 }
+
+export const preSelect = (selected, options) => {
+  return options
+    .fn(this)
+    .replace(new RegExp(' value="' + selected + '"'), '$& selected="selected"')
+    .replace(new RegExp('>' + selected + '</option>'), ' selected="selected"$&')
+}

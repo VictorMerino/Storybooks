@@ -18,12 +18,14 @@
             Status
           </label>
           <select id="status" name="status">
+            {{#preSelect story.status}}
             <option value="public" selected>
               Public
             </option>
             <option value="private">
               Private
             </option>
+            {{/preSelect}}
           </select>
         </div>
       </div>
