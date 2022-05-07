@@ -19,11 +19,9 @@ passport.use(
 
         // Match password
         bcrypt.compare(password, user.password, (err, success) => {
-          if (success) {
-            return done(null, user)
-          } else {
-            return done(null, false, { message: 'Incorrect password' })
-          }
+          return success
+            ? done(null, user)
+            : done(null, false, { message: 'Incorrect password' })
         })
       } catch (err) {
         console.log(err)
