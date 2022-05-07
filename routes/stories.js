@@ -31,11 +31,11 @@ router.get('/edit/:id', ensureAuth, async (req, res) => {
     if (!story) return res.render('error/404')
     // TO-DO: check for possible code-smell: I'm copying the next conditional:
     if (canEdit(story.user, req.user.id)) {
-      res.render('stories/edit', { story })
-    } else {
-      req.flash('errorMsg', 'You cannot edit this story')
-      res.redirect('/')
+      return res.render('stories/edit', { story })
     }
+
+    req.flash('errorMsg', 'You cannot edit this story')
+    res.redirect('/')
   } catch (err) {
     res.render('error/500')
   }
@@ -51,22 +51,22 @@ router.post('/', ensureAuth, async (req, res) => {
     }
 
     if (errors.length) {
-      res.render('stories/add', {
+      return res.render('stories/add', {
         title,
         status,
         body,
         errors,
       })
-    } else {
-      const newStory = {
-        user: req.user.id,
-        title,
-        status,
-        body,
-      }
-      await Story.create(newStory)
-      res.redirect('/dashboard')
     }
+
+    const newStory = {
+      user: req.user.id,
+      title,
+      status,
+      body,
+    }
+    await Story.create(newStory)
+    res.redirect('/dashboard')
   } catch (err) {
     res.render('error/500')
     throw new Error(err)
@@ -97,15 +97,14 @@ router.put('/edit/:id', ensureAuth, async (req, res) => {
         new: true,
         runValidators: true,
       }).lean()
-      res.redirect('/dashboard')
-    } else {
-      console.log(
-        'Something strange. User is trying to modify a story from other user'
-      )
-      req.flash('errorMsg', 'You cannot edit this story')
-      res.render('error/500')
+      return res.redirect('/dashboard')
     }
 
+    console.log(
+      'Something strange. User is trying to modify a story from other user'
+    )
+    req.flash('errorMsg', 'You cannot edit this story')
+    res.render('error/500')
     return false
   } catch (err) {
     res.render('error/500')
