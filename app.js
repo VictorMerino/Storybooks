@@ -1,5 +1,4 @@
 import express from 'express'
-import dotenv from 'dotenv'
 import morgan from 'morgan'
 import flash from 'connect-flash'
 
@@ -11,8 +10,7 @@ import { setGlobals } from './config/globals.js'
 import { setPassport } from './config/passport.js'
 import { setRouter } from './config/router.js'
 import { setSession } from './config/session.js'
-
-dotenv.config()
+import { setServer } from './config/server.js'
 
 connectDB()
 
@@ -32,12 +30,4 @@ app.use(flash())
 setGlobals(app)
 setPassport(app)
 setRouter(app)
-
-const PORT = process.env.PORT || 3000
-
-app.listen(
-  PORT,
-  console.log(
-    `Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`
-  )
-)
+setServer(app)
