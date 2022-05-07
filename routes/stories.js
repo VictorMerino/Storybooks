@@ -4,7 +4,7 @@ import { ensureAuth } from '../middleware/auth.js'
 import { canEdit } from '../helpers/hbs.js'
 
 import Story from '../models/Story.js'
-import User from '../models/User.js'
+// import User from '../models/User.js'
 
 const router = express.Router()
 
@@ -19,7 +19,9 @@ router.get('/:id', ensureAuth, async (req, res) => {
     return res.render('error/404')
   }
 })
+
 router.get('/add', ensureAuth, (req, res) => {
+  console.log('WAT')
   res.render('stories/add')
 })
 
