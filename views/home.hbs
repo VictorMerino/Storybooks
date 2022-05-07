@@ -7,9 +7,9 @@
   {{#each stories}}
     <div class="col s12 m4">
       <div class="card">
-        {{#if successMsg}}
-          <div class="card-image">EDIT</div>
-        {{/if}}
+        <div class="card-image btn-floating brown hide" style="position: absolute; right: 12px; top: 6px;">
+          <i class="fas fa-edit"></i>
+        </div>
         <div class="card-content center-align" style="height: 200px; overflow: hidden">
           <h5 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
             {{title}}
