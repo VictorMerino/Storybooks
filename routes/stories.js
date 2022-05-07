@@ -109,4 +109,15 @@ router.put('/edit/:id', ensureAuth, async (req, res) => {
   }
 })
 
+router.delete('/:id', ensureAuth, async (req, res) => {
+  try {
+    await Story.remove({ _id: req.params.id })
+    req.flash('successMsg', "This story now sleeps in the story's paradise")
+    res.redirect('/dashboard')
+  } catch (err) {
+    res.render('error/500')
+    throw new Error(err)
+  }
+})
+
 export default router
