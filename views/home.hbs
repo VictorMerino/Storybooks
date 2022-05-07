@@ -8,9 +8,12 @@
     <div class="col s12 m4">
       <div class="card">
         {{#if (canEdit user ../userId)}}
-          <div class="card-image btn-floating brown" style="position: absolute; right: 6px; top: -12px;">
+          <a
+            href="/stories/edit/{{_id}}"
+            class="card-image btn-floating brown"
+            style="position: absolute; right: 6px; top: -12px;">
             <i class="fas fa-edit"></i>
-          </div>
+          </a>
         {{/if}}
         <div class="card-content center-align" style="height: 200px; overflow: hidden">
           <h5 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
