@@ -1,0 +1,59 @@
+<div class="row">
+  {{#each stories}}
+    <div class="col s12 m6 l4">
+      <div class="card">
+        {{#if (canEdit user ../userId)}}
+          <a
+            href="/stories/edit/{{_id}}"
+            class="card-image btn-floating brown"
+            style="position: absolute; right: 6px; top: -12px;">
+            <i class="fas fa-edit"></i>
+          </a>
+        {{/if}}
+        <div class="card-content center-align" style="height: 200px; overflow: hidden">
+          <h5 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+            {{title}}
+          </h5>
+          <p>{{renderHTML body}}</p>
+          <br>
+          <a href="/stories/user/{{user}}" class="chip">{{ getUserName user }}</a>
+        </div>
+        <div class="card-action center-align">
+          <a class="waves-effect waves-light btn modal-trigger" href="#modal-{{@index}}">READ MORE</a>
+
+          <!-- Modal Structure -->
+          <div id="modal-{{@index}}" class="modal">
+            <div class="modal-content">
+              <h4>{{title}}</h4>
+              <p>{{renderHTML body}}</p>
+            </div>
+            <div class="modal-footer">
+              <a href="/stories/{{_id}}" class="btn go-to-story">Go to story</a>
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Structure -->
+      <div id="modal-{{@index}}" class="modal">
+        <div class="modal-content">
+          <h4>{{title}}</h4>
+          <p>{{renderHTML body}}</p>
+        </div>
+        <div class="modal-footer">
+          <a href="/stories/{{_id}}" class="btn go-to-story">Go to story</a>
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+      </div>
+  {{else}}
+    No available stories
+  {{/each}}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, {opacity: 0.2});
+  });
+</script>
