@@ -1,7 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
-import passport from 'passport'
 import flash from 'connect-flash'
 
 import './config/passport-local.js'
@@ -9,6 +8,7 @@ import { connectDB } from './config/db.js'
 import { setHandlebarsConfig } from './config/handlebars.js'
 import { setFormsConfig } from './config/forms.js'
 import { setGlobals } from './config/globals.js'
+import { setPassport } from './config/passport.js'
 import { setRouter } from './config/router.js'
 import { setSession } from './config/session.js'
 
@@ -29,13 +29,8 @@ setSession(app)
 // Connect flash
 app.use(flash())
 
-// Global vars
 setGlobals(app)
-
-// Passport
-app.use(passport.initialize())
-app.use(passport.session())
-
+setPassport(app)
 setRouter(app)
 
 const PORT = process.env.PORT || 3000

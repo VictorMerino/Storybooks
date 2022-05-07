@@ -3,7 +3,6 @@ import mongoose from 'mongoose'
 import MongoStore from 'connect-mongo'
 
 export const setSession = (app) => {
-  // Express session
   app.use(
     session({
       secret: 'keyboard cator',
