@@ -9,12 +9,11 @@ import MongoStore from 'connect-mongo'
 
 import flash from 'connect-flash'
 
-import { connectDB } from './config/db.js'
-
 dotenv.config()
 
 import './config/passport-local.js'
 
+import { connectDB } from './config/db.js'
 connectDB()
 
 const app = express()
