@@ -29,11 +29,14 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Handlebars helpers
-import { formatDate, renderHTML, canEdit } from './helpers/hbs.js'
+import { formatDate, renderHTML, canEdit, getUserName } from './helpers/hbs.js'
 // Handlebars
 app.engine(
   '.hbs',
-  engine({ extname: '.hbs', helpers: { formatDate, renderHTML, canEdit } })
+  engine({
+    extname: '.hbs',
+    helpers: { formatDate, renderHTML, canEdit, getUserName },
+  })
 )
 app.set('view engine', '.hbs')
 app.set('views', './views')

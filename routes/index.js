@@ -14,7 +14,8 @@ router.get('/', async (req, res) => {
       isAuthenticated: req.isAuthenticated(),
       userId: req.user.id,
     })
-  } catch {
+  } catch (err) {
+    console.log(err)
     res.render('error/500')
   }
 })

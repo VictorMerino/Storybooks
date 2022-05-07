@@ -1,6 +1,8 @@
 import { DateTime } from 'luxon'
 import jsdom from 'jsdom'
 
+import User from '../models/User.js'
+
 export const formatDate = (date, format) => {
   return DateTime.fromJSDate(date).toLocaleString(DateTime.DATETIME_FULL)
 }
@@ -13,4 +15,10 @@ export const renderHTML = (input) => {
 
 export const canEdit = (storyUser, loggedUser) => {
   return storyUser.toString() === loggedUser
+}
+
+export const getUserName = async (userId) => {
+  const storyUser = await User.findOne({ _id: userId })
+  const fullName = `${storyUser.firstName} ${storyUser.lastName}`
+  return fullName
 }
