@@ -6,15 +6,31 @@
 <div class="row">
   {{#each stories}}
     <div class="col s12 m4">
-      <div class="card">
-        <div class="card-image">EDIT</div>
+      <div class="card" style="height: 300px;">
+        {{#if successMsg}}
+          <div class="card-image">EDIT</div>
+        {{/if}}
         <div class="card-content center-align">
           <h5>{{title}}</h5>
           <p>{{body}}</p>
           <br>
           <div class="chip">USER IMG</div>
         </div>
-        <div class="card-action center-align">READ MORE</div>
+        <div class="card-action center-align">
+          <a class="blue-color"></a>
+          <a class="waves-effect waves-light btn modal-trigger" href="#modal1">READ MORE</a>
+
+          <!-- Modal Structure -->
+          <div id="modal1" class="modal">
+            <div class="modal-content">
+              <h4>Modal Header</h4>
+              <p>A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+              <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   {{else}}
@@ -26,3 +42,10 @@
 {{#unless isAuthenticated}}
   <p><a href="/login">Login here</a></p>
 {{/unless}}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, {opacity: 0.2});
+  });
+</script>
