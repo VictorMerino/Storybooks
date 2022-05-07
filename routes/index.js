@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
     res.render('home', {
       stories,
       isAuthenticated: req.isAuthenticated(),
+      userId: req.user.id,
     })
   } catch {
     res.render('error/500')
