@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
     res.render('home', {
       stories,
       isAuthenticated: req.isAuthenticated(),
-      userId: req.user.id,
+      userId: req.user ? req.user.id : null,
     })
   } catch (err) {
     console.log(err)
