@@ -8,6 +8,17 @@ import User from '../models/User.js'
 
 const router = express.Router()
 
+router.get('/:id', ensureAuth, async (req, res) => {
+  try {
+    const story = await Story.findById(req.params.id).populate('user').lean()
+    if (!story) {
+      return res.render('error/404')
+    }
+    res.render('stories/single-story', { story })
+  } catch (error) {
+    return res.render('error/404')
+  }
+})
 router.get('/add', ensureAuth, (req, res) => {
   res.render('stories/add')
 })
