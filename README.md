@@ -31,8 +31,6 @@ Improvements:
 You should provice your own environment variables:
 PORT=3000 # 3000 is the standard one
 MONGO_URI=mongodb+srv://USERNAME:PASSWORD@CLUSTER.mongodb.net/YOUR_DB_NAME?retryWrites=true&w=majority
-# GOOGLE_CLIENT_ID=YOUR_CLIENT_ID
-# GOOGLE_CLIENT_SECRET=YOUR_CLIENT_SECRET
 ```
 
 ---

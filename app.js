@@ -12,13 +12,11 @@ import flash from 'connect-flash'
 
 import { connectDB } from './config/db.js'
 import routes from './routes/index.js'
-// import authGoogleRoutes from './routes/auth-google.js'
 import authLocalRoutes from './routes/auth-local.js'
 import storiesRoutes from './routes/stories.js'
 
 dotenv.config()
 
-// import './config/passport-google-oauth.js'
 import './config/passport-local.js'
 
 connectDB()
@@ -95,7 +93,6 @@ app.use(express.static(pathname))
 
 // Routes
 app.use('/', routes)
-// app.use('/auth', authGoogleRoutes)
 app.use('/', authLocalRoutes)
 app.use('/stories', storiesRoutes)
 
