@@ -11,9 +11,6 @@ import MongoStore from 'connect-mongo'
 import flash from 'connect-flash'
 
 import { connectDB } from './config/db.js'
-import routes from './routes/index.js'
-import authLocalRoutes from './routes/auth-local.js'
-import storiesRoutes from './routes/stories.js'
 
 dotenv.config()
 
@@ -91,10 +88,8 @@ const { pathname } = new URL('public', import.meta.url)
 
 app.use(express.static(pathname))
 
-// Routes
-app.use('/', routes)
-app.use('/', authLocalRoutes)
-app.use('/stories', storiesRoutes)
+import { setRoutes } from './config/router.js'
+setRoutes(app)
 
 const PORT = process.env.PORT || 3000
 
