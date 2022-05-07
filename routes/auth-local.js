@@ -57,35 +57,33 @@ router.post('/register', async (req, res) => {
       layout: 'login',
     })
   }
-  if (errors.length) {
-    renderRegisterWithErrors()
-  } else {
-    const user = await User.findOne({ email })
-    if (user) {
-      errors.push({ msg: 'Email is already registered' })
-      renderRegisterWithErrors()
-    } else {
-      const newUser = new User({
-        email,
-        firstName,
-        lastName,
-        password,
-      })
+  if (errors.length) return renderRegisterWithErrors()
 
-      // Hash password
-      bcrypt.genSalt(10, (err, salt) =>
-        bcrypt.hash(newUser.password, salt, async (error, hash) => {
-          if (error) throw new Error(err)
-
-          // Set password hashed
-          newUser.password = hash
-          await newUser.save()
-          req.flash('successMsg', 'You are now registered, now you can log-in')
-          res.redirect('/')
-        })
-      )
-    }
+  const user = await User.findOne({ email })
+  if (user) {
+    errors.push({ msg: 'Email is already registered' })
+    return renderRegisterWithErrors()
   }
+
+  const newUser = new User({
+    email,
+    firstName,
+    lastName,
+    password,
+  })
+
+  // Hash password
+  bcrypt.genSalt(10, (err, salt) =>
+    bcrypt.hash(newUser.password, salt, async (error, hash) => {
+      if (error) throw new Error(err)
+
+      // Set password hashed
+      newUser.password = hash
+      await newUser.save()
+      req.flash('successMsg', 'You are now registered, now you can log-in')
+      res.redirect('/')
+    })
+  )
 })
 
 router.post('/login', (req, res, next) => {
@@ -99,19 +97,18 @@ router.post('/login', (req, res, next) => {
 
   if (errors.length) {
     console.log('Check for errors')
-    res.render('login', {
+    return res.render('login', {
       errors,
       email,
       password,
       layout: 'login',
     })
-  } else {
-    passport.authenticate('local', {
-      successRedirect: '/dashboard',
-      failureRedirect: '/',
-      failureFlash: true,
-    })(req, res, next)
   }
+  passport.authenticate('local', {
+    successRedirect: '/dashboard',
+    failureRedirect: '/',
+    failureFlash: true,
+  })(req, res, next)
 })
 
 export default router
