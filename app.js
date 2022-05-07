@@ -29,9 +29,12 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Handlebars helpers
-import { formatDate } from './helpers/hbs.js'
+import { formatDate, renderHTML } from './helpers/hbs.js'
 // Handlebars
-app.engine('.hbs', engine({ extname: '.hbs', helpers: { formatDate } }))
+app.engine(
+  '.hbs',
+  engine({ extname: '.hbs', helpers: { formatDate, renderHTML } })
+)
 app.set('view engine', '.hbs')
 app.set('views', './views')
 

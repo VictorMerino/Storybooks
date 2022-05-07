@@ -6,13 +6,15 @@
 <div class="row">
   {{#each stories}}
     <div class="col s12 m4">
-      <div class="card" style="height: 300px;">
+      <div class="card">
         {{#if successMsg}}
           <div class="card-image">EDIT</div>
         {{/if}}
-        <div class="card-content center-align">
-          <h5>{{title}}</h5>
-          <p>{{body}}</p>
+        <div class="card-content center-align" style="height: 200px; overflow: hidden">
+          <h5 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+            {{title}}
+          </h5>
+          <p>{{renderHTML body}}</p>
           <br>
           <div class="chip">USER IMG</div>
         </div>
