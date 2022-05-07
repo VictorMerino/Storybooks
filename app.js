@@ -2,17 +2,18 @@ import express from 'express'
 import dotenv from 'dotenv'
 import morgan from 'morgan'
 import passport from 'passport'
-import session from 'express-session'
-import mongoose from 'mongoose'
-import MongoStore from 'connect-mongo'
-
 import flash from 'connect-flash'
+
+import './config/passport-local.js'
+import { connectDB } from './config/db.js'
+import { setHandlebarsConfig } from './config/handlebars.js'
+import { setFormsConfig } from './config/forms.js'
+import { setGlobals } from './config/globals.js'
+import { setRouter } from './config/router.js'
+import { setSession } from './config/session.js'
 
 dotenv.config()
 
-import './config/passport-local.js'
-
-import { connectDB } from './config/db.js'
 connectDB()
 
 const app = express()
@@ -21,38 +22,21 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
 }
 
-import { setHandlebarsConfig } from './config/handlebars.js'
 setHandlebarsConfig(app)
-
-import { setFormsConfig } from './config/forms.js'
 setFormsConfig(app)
-
-// Express session
-app.use(
-  session({
-    secret: 'keyboard cator',
-    resave: true,
-    saveUninitialized: true,
-    store: MongoStore.create({ mongoose, mongoUrl: process.env.MONGO_URI }),
-  })
-)
+setSession(app)
 
 // Connect flash
 app.use(flash())
 
 // Global vars
-import { setGlobals } from './config/globals.js'
 setGlobals(app)
 
 // Passport
 app.use(passport.initialize())
 app.use(passport.session())
-const { pathname } = new URL('public', import.meta.url)
 
-app.use(express.static(pathname))
-
-import { setRoutes } from './config/router.js'
-setRoutes(app)
+setRouter(app)
 
 const PORT = process.env.PORT || 3000
 
