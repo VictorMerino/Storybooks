@@ -28,26 +28,21 @@ router.get('/edit/:id', ensureAuth, async (req, res) => {
     const story = await Story.findOne({
       _id: req.params.id,
     }).lean()
-    console.log(story)
     if (!story) return res.render('error/404')
     // TO-DO: check for possible code-smell: I'm copying the next conditional:
     if (canEdit(story.user, req.user.id)) {
-      console.log(story)
       res.render('stories/edit', { story })
     } else {
-      console.log('Peta en el else')
       req.flash('errorMsg', 'You cannot edit this story')
       res.redirect('/')
     }
   } catch (err) {
-    console.log(err)
     res.render('error/500')
   }
 })
 
 router.post('/', ensureAuth, async (req, res) => {
   try {
-    console.log(req.body)
     const { title, status, body } = req.body
 
     let errors = []
@@ -56,7 +51,6 @@ router.post('/', ensureAuth, async (req, res) => {
     }
 
     if (errors.length) {
-      console.log('Check for errors', errors)
       res.render('stories/add', {
         title,
         status,
@@ -89,7 +83,6 @@ router.put('/edit/:id', ensureAuth, async (req, res) => {
     }
 
     let errors = []
-    console.log('Title ', title)
     if (!title || !status || !body) {
       errors.push({ msg: 'All fields are required' })
     }
@@ -133,7 +126,6 @@ router.delete('/:id', ensureAuth, async (req, res) => {
 
 router.get('/user/:id', ensureAuth, async (req, res) => {
   try {
-    console.log(req.params.id)
     // TO-DO: only show public stories and/or private own ones
     /* const stories2 = await Story.find({
       user: req.params.id,
@@ -143,7 +135,6 @@ router.get('/user/:id', ensureAuth, async (req, res) => {
       .populate('user')
       .lean()
     // User.find({$or:[{region: "NA"},{sector:"Some Sector"}]}, function(err, user)
-    console.log(stories)
     res.render('stories/user', { stories })
   } catch (error) {
     return res.render('error/500')
