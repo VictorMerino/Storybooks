@@ -2,6 +2,7 @@ import express from 'express'
 
 import './config/passport-local.js'
 import { connectDB } from './config/db.js'
+
 import { setMorgan } from './config/morgan.js'
 import { setHandlebarsConfig } from './config/handlebars.js'
 import { setFormsConfig } from './config/forms.js'
