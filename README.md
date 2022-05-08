@@ -3,8 +3,6 @@
 App to save messages to be shown for other users.
 Includes a dashboard, and add/edit/delete stories
 
----
-
 ## Enhancements:
 
 - Check code for duplications
@@ -16,8 +14,6 @@ Includes a dashboard, and add/edit/delete stories
   - FullName: calculated on startup
 - Finish app.js organization: connectDB, morgan and flash config files
 - CanEdit helper: outside of hbs helpers, as it is actually a Common Helper (not only for templates, but useful in routes as well)
-
----
 
 ## Next features:
 
@@ -33,8 +29,6 @@ Includes a dashboard, and add/edit/delete stories
 - Different roles/teams to access to routes/stories/etc
 - Deploy to Heroku/Firebase/Netlify/Vercel/Whatever
 
----
-
 ## Technologies used:
 
 - Node.js: Backend
@@ -46,8 +40,6 @@ Includes a dashboard, and add/edit/delete stories
 - Express Session and Connect Mongo for handle user session and store them in db
 - Prettier basic config
 
----
-
 ## Really important:
 
 ```
@@ -56,15 +48,11 @@ PORT=3000 # 3000 is the standard one
 MONGO_URI=mongodb+srv://USERNAME:PASSWORD@CLUSTER.mongodb.net/YOUR_DB_NAME?retryWrites=true&w=majority
 ```
 
----
-
 ## Node.js version tested:
 
 ```
 v16.14.2
 ```
-
----
 
 ## To run the project, just:
 
