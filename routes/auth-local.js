@@ -28,6 +28,7 @@ router.get('/logout', (req, res) => {
 })
 
 router.post('/register', async (req, res) => {
+  // 01. Validación de inputs
   const { firstName, lastName, password, password2, email } = req.body
 
   let errors = []
@@ -45,6 +46,7 @@ router.post('/register', async (req, res) => {
     errors.push({ msg: `Passwords minimum length is ${passwordLength}` })
   }
 
+  // 02. Re-renderizar la vista
   function renderRegisterWithErrors() {
     console.log('Check for errors')
     res.render('register', {
@@ -65,6 +67,9 @@ router.post('/register', async (req, res) => {
     return renderRegisterWithErrors()
   }
 
+  // Actually log the user in two steps:
+  // 03. encryptPassword
+  // 04. saveUser
   const newUser = new User({
     email,
     firstName,
